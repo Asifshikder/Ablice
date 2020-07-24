@@ -1,0 +1,144 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+
+    <title>@ViewData["Title"] - Ablice</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700|" rel="stylesheet" type="text/css">
+    <link href="~/Content/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/fonts/lineo-icon/style.css" rel="stylesheet" />
+    <link rel="icon" href="~/Icons/Ablice.png" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="js/ie-support/html5.js"></script>
+    <script src="js/ie-support/respond.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body class="slider-collapse">
+
+    <div id="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a href="/Home/index" id="branding">
+                    <img src="~/Icons/Ablice.png" height="50" alt="Ruger Rumble" class="logo" />
+                    @*<img src="~/Icons/Ruger Rumble.png" height="50" alt="Ruger Rumble" class="logo" />*@
+                    @*<img src="~/Content/images/logo.png" alt="" class="logo">*@
+                    <div class="logo-text">
+                        <h1 class="site-title">Ablice</h1>
+                        <small class="site-description">Balice's Services </small>
+                    </div>
+                </a> <!-- #branding -->
+
+                <div class="right-section pull-right">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="right-section pull-right">
+                            <form asp-controller="Account" asp-action="Logout" method="post" id="targetForm">
+                                <a href="/Account/Profile">My Account</a>
+                                <a href="#" id="Logoutbtn">Logout</a>
+                            </form>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="login-button">Login</a>
+                        <a href="/Account/Register" class="login-button">Register</a>
+
+                    }
+                </div> <!-- .right-section -->
+
+                <div class="main-navigation">
+                    <button class="toggle-menu" style="text-align:center"><i class="fa fa-bars"></i></button>
+                    <ul class="menu" style="text-align:center">
+                        <li class="menu-item home current-menu-item"><a href="index.html"><i class="icon-home"></i></a></li>
+                        <li class="menu-item"><a href="/Home/Store">Store</a></li>
+                    </ul> <!-- .menu -->
+                    <!--<div class="search-form">
+                        <label><img src="images/icon-search.png"></label>
+                        <input type="text" placeholder="Search...">
+                    </div>-->
+                    <!-- .search-form -->
+
+                    <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
+                </div> <!-- .main-navigation -->
+            </div> <!-- .container -->
+        </div> <!-- .site-header -->
+
+        @RenderBody()
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h3 class="widget-title">About</h3>
+                            <ul class="no-bullet" style="color:white">
+                                <li><a href="/Home/TermsAndConditions">Terms & Conditions</a></li>
+                                <li><a href="/Home/Privacy">Privacy Policy</a></li>
+                                <li><a href="/Home/RefundPolicy">Refund/Shipping Policy</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <h3 class="widget-title">My Account</h3>
+                            <ul class="no-bullet">
+                                <li><a href="/account/profile">Profile</a></li>
+                                <li><a href="/order/card">Cart</a></li>
+                                <li><a href="/order/trackorder">Order Tracking</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-4">
+                        <div class="widget">
+                            <a href="https://pay.g2a.com/"><img src="https://pay.g2a.com//web/img/buttons/std_g2apay_btn_orange_XL.png" alt="G2A Pay"></a>
+                            @*<h3 class="widget-title">Join our newsletter</h3>
+                                <form action="#" class="newsletter-form">
+                                    <input type="text" placeholder="Enter your email...">
+                                    <input type="submit" value="Subsribe">
+                                </form>*@
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                </div><!-- .row -->
+
+                <div class="colophon">
+                    <div class="copy">©2020 REECARD LLC, REECARD, REEBUX, AND RUGER RUMBLE ARE ALL REGISTERED AND NON REGISTERED TRADEMARKS OF REECARD LLC. ALL RIGHT RESERVED. </div>
+                    <div class="social-links square">
+                        <a href="https://discord.gg/ssnyGAk">
+                            <i class='fab fa-discord' style='font-size:48px;color:blue'></i>
+                        </a>
+                    </div> <!-- .social-links -->
+                </div> <!-- .colophon -->
+            </div> <!-- .container -->
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/js/plugins.js"></script>
+    <script src="~/Content/js/app.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Logoutbtn").click(function () {
+                $("#targetForm").submit();
+            });
+        });
+    </script>
+</body>
+
+</html>

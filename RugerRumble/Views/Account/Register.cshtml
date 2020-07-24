@@ -1,0 +1,76 @@
+﻿@model RugerRumble.Models.ViewModel.AccountViewModel.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_LayoutCustom.cshtml";
+}
+
+
+<main class="main-content" style="background-color: #2b2b2b;box-shadow:15px;">
+    <div class="container">
+        <div class="page">
+            <section>
+                <div style=" border-radius:20px">
+                    <div style="text-align:center">
+                        <header style="padding-top:20px">
+                            <h2 style="color:orangered;font-size:39px;">CREATE AN ACCOUNT</h2>
+                            <h2>Please fill up the form to create an account</h2>
+                        </header>
+                    </div>
+                    <div>
+                        <form asp-controller="Account" asp-action="Register" method="post">
+                            <div class="row" style="padding-bottom:50px;">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-8">
+                                    <div class="">
+                                        <label style="color:white;font-size:20px">Email</label>
+                                        <br />
+                                        <input asp-for="Email" required type="text" style="border-color:red;width:550px;color:white" placeholder="Enter your email">
+                                    </div>
+                                    <div class="form-group">
+                                        <span asp-validation-for="Email" style="color:yellow"></span>
+                                    </div>
+                                    <div class="">
+                                        <label style="color:white;font-size:20px">Password</label>
+                                        <br />
+                                        <input asp-for="Password" required type="password" style="border-color:red;width:550px;color:white" placeholder="Enter your password">
+                                    </div>
+                                    <div class="form-group">
+                                        <span asp-validation-for="Password" style="color:yellow"></span>
+                                    </div>
+                                    <div class="">
+                                        <label style="color:white;font-size:20px">Retype Password</label>
+                                        <br />
+                                        <input asp-for="PasswordConfirmation" required type="password" style="border-color:red;width:550px;color:white" placeholder="Enter your password">
+                                    </div>
+                                    <div class="form-group">
+                                        <span asp-validation-for="PasswordConfirmation" style="color:yellow"></span>
+                                    </div>
+                                    <div class="" style="padding-top:10px">
+                                        <input asp-for="TermsPolicy" required type="checkbox" style="height:16px">
+                                        <span>
+                                            <a style="font-size:14px;color:#f3f8c4">I HAVE READ AND ACCEPTED THE TERMS OF THE PRIVACY POLICY & <br />LICENSE AGREEMENT.</a>
+                                        </span>
+                                        <span asp-validation-for="TermsPolicy" class="text-danger"></span>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        @Html.HiddenFor(model => Model.ReturnUrl)
+                                    </div>
+                                    <div style="padding-top:30px;">
+                                        <input type="submit" class="btn btn-block" value="Register" style="background-color:blue;color:white;width:550px">
+                                    </div>
+                                    <p style="color:lightgreen;">Already have an account?<a href="/account/login" style="color:red"> Login here</a></p>
+
+                                    <div class="form-group">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
